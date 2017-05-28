@@ -48,6 +48,7 @@ app.get('/callback', function(req, res){
 
 	  //insert_comment(oauth2Client);
 	  //getComments(oauth2Client);
+	  //delete_comment(oauth2Client);
 	  //insert_reply(oauth2Client);
 
 	});
@@ -115,10 +116,10 @@ function insert_comment(auth){
 });
 }
 
-//Insert Comment
+//Insert Reply
 
 function insert_reply(auth){
-	var parentId = 'z12ehpvbioayzjl4f04cg3vi3srqdnkbvkc0k';
+	var parentId = 'z135ivspvqe2h13nq230yvky5xmgw1yw204';
 	var service = google.youtube('v3');
 	service.comments.insert({
     auth: auth,
@@ -143,6 +144,25 @@ function insert_reply(auth){
 });
 }
 
+//Delete comment
+
+function delete_comment(auth){
+	var id = 'z135ivspvqe2h13nq230yvky5xmgw1yw204';
+	var service = google.youtube('v3');
+	service.comments.delete({
+    auth: auth,
+    id: id
+    
+  }, function(err, response) {
+    if (err) {
+      console.log('The API returned an error: ' + err);
+      return;
+    }
+
+ console.log(response);
+
+});
+}
 
 
 
