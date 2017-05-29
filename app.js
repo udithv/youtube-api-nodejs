@@ -1,10 +1,4 @@
 
-
-
-var clientId = '183442599206-lt5tu13bntjtfqdl8hl2p5u2960v0qk0.apps.googleusercontent.com';
-
-var clientSecret = 'DyZPVFD0UUy7LAY1HL1SkLcS';
-
 var callback =  'http://localhost:3000/callback'
 
 var express = require('express');
