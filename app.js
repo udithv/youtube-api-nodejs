@@ -1,3 +1,6 @@
+
+
+
 var clientId = '183442599206-lt5tu13bntjtfqdl8hl2p5u2960v0qk0.apps.googleusercontent.com';
 
 var clientSecret = 'DyZPVFD0UUy7LAY1HL1SkLcS';
@@ -7,14 +10,16 @@ var callback =  'http://localhost:3000/callback'
 var express = require('express');
 var app = express();
 
+require('dotenv').config();
+
 var google = require('googleapis');
 var opn = require('opn');
 var OAuth2 = google.auth.OAuth2;
 
 
 var oauth2Client = new OAuth2(
-	clientId,
-	clientSecret,
+	process.env.CLIENT_ID,
+	process.env.CLIENT_SECRET,
 	callback
 );
 
@@ -48,7 +53,7 @@ app.get('/callback', function(req, res){
 
 	  //insert_comment(oauth2Client);
 	  //getComments(oauth2Client);
-	  //delete_comment(oauth2Client);
+	  delete_comment(oauth2Client);
 	  //insert_reply(oauth2Client);
 
 	});
@@ -96,7 +101,7 @@ function insert_comment(auth){
 	//	  "channelId": "UC_x5XG1OV2P6uZZ5FSM9Ttw",
 		  "topLevelComment": {
 		   "snippet": {
-		    "textOriginal": "The Uman has landed....!"
+		    "textOriginal": "The Owls are Not What they seem!"
 		   }
 		  },
 		  "videoId": "MILSirUni5E"
@@ -119,7 +124,7 @@ function insert_comment(auth){
 //Insert Reply
 
 function insert_reply(auth){
-	var parentId = 'z135ivspvqe2h13nq230yvky5xmgw1yw204';
+	var parentId = 'z120zhhzonqujheja04cg3vi3srqdnkbvkc0k';
 	var service = google.youtube('v3');
 	service.comments.insert({
     auth: auth,
@@ -147,7 +152,7 @@ function insert_reply(auth){
 //Delete comment
 
 function delete_comment(auth){
-	var id = 'z135ivspvqe2h13nq230yvky5xmgw1yw204';
+	var id = 'z120zhhzonqujheja04cg3vi3srqdnkbvkc0k';
 	var service = google.youtube('v3');
 	service.comments.delete({
     auth: auth,
